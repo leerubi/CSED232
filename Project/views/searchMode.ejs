@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <meta charset="utf-8" />
+    <title>SEARCH MODE</title>
+    <style>
+        #wrap {
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        span {
+            width: 350px;
+            height: 500px;
+            float: right;
+            border-radius: 5px;
+            background-color: #ededed
+        }
+
+        #title {
+            width: 350px;
+            padding: 20px;
+            font-size: 1.5em;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+            background-color: #2ecc71;
+            float: left;
+        }
+
+        input {
+            width: 350px;
+            padding: 20px;
+            font-size: 1.5em;
+            border-radius: 5px;
+            text-align: center;
+            color: black;
+            background-color: white;
+            float: left;
+        }
+
+        #sound {
+            float: left;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        img {
+            width: 50px;
+        }
+
+        #exit {
+            padding: 0;
+            position: fixed;
+            bottom: 100px;
+            right: 100px;
+            font-size: 35px;
+            color: white;
+            background-color: #3498db;
+            width: 100px;
+            text-align: center;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <script src=/javascripts/load_file.js></script>
+    <script>
+        var sfrom = window.location.href.split("?")[1].split("&")[1].split("=")[1];
+        var sto = window.location.href.split("?")[1].split("&")[0].split("=")[1];
+        var filePath = "/file/" + document.cookie.valueOf() + sto + sfrom + ".txt";
+        var wordArray = [];
+        var meaningArray = [];
+        //User txt file
+        function Init() {
+            read = readTextFile(filePath);
+            var X = read.split("\t");
+            for(var i = 0; X[i]; i++)
+            {
+                var Y = X[i].split(" : ");
+                wordArray.push(Y[0]);
+                meaningArray.push(Y[1]);
+            }
+        }
+        Init();
+    </script>
+    <div id="wrap">
+        <table>
+            <tr><th id="title">검색할 단어를 입력하세요!</th><span><ol start="1" id="mean_List"></ol></span></tr>
+            <tr><th> <p><input type="text" id="input_word" onkeypress="if(event.keyCode==13) {search_word();}"><br></p></th></tr>
+            <img id="sound" usemap="#sound">
+            <map id="soundbutton"></map>
+
+
+            <tr><td id="output"></td></tr>
+            <tr><th>    <ul id="search_List"></ul></th></tr> 
+        </table>
+    </div>
+
+    <ol start="1" id="mean_List"></ol>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var base_url;
+        var api_url;
+        var input_word;
+        var additional;
+        var output;
+        var means = new Array();
+        var list = document.getElementById("list");
+        var m = 0;
+        var exist;
+        var soundplay;         // 현재 출력되는 단어의 발음
+        var soundbutton = new Array();
+        var input_words = new Array();
+        
+        base_url = "https://glosbe.com/gapi/translate?from=" + sfrom + "&dest=" + sto + "&format=json&pretty=false&phrase=";
+        additional = "&callback=?";
+
+        // 입력받은 단어의 뜻을 출력해주는 함수
+        function search_word() {
+
+            input_word = document.getElementById("input_word").value;
+            document.getElementById("output").innerHTML = '';
+
+            api_url = base_url + input_word + additional; // api url
+            means[m] = ' ';
+
+            // api url로 부터 json index를 data로 읽어옴
+            $(document).ready(function () {
+                $.getJSON(api_url, function (data) {
+                    print_means(data);
+                });
+            });
+
+            soundPlay(input_word);
+            m++;
+        }
+
+        // 단어의 뜻을 출력해주는 함수
+        function print_means(data) {
+            var i = 0;
+            var j = 0;
+            var line = new Array();
+
+            // json file로 부터 단어의 뜻을 parsing
+            exist = true;
+            while (1) {
+                if (data.tuc[i] == undefined) {
+                    break;
+                }
+                if (data.tuc[i].phrase == undefined) {
+                    break;
+                }
+                line[i] = "";
+                line[i] += data.tuc[i].phrase.text;
+                if (i != 0)
+                    means[m] += ', ';
+                if (i == 0)
+                    means[m] = data.tuc[i].phrase.text;
+                else
+                    means[m] += data.tuc[i].phrase.text;
+                j = 0;
+                while (1) {
+                    if (data.tuc[i].meanings == undefined)
+                        break;
+                    if (j == 0) {
+                        line[i] += ": ";
+                    }
+                    if (data.tuc[i].meanings[j] == undefined) {
+                        break;
+                    }
+                    else if (j != 0) {
+                        line[i] += ", ";
+                    }
+                    line[i] += data.tuc[i].meanings[j].text;
+                    j++;
+                }
+                i++;
+            }
+            show_means_list(line, i);
+
+            document.getElementById("input_word").value = ""; // 검색 창 초기화
+
+            show_searched_word_list();
+
+        }
+        // 사운드 이미지를 클릭했을 때, 소리를 재생시키는 함수
+        function soundPlay(randomwordSound) {
+            soundplay = document.createElement("VIDEO");
+            soundplay.setAttribute("width", "0");
+            soundplay.setAttribute("height", "0");
+            soundplay.setAttribute("src", "/sound/?content=" + randomwordSound + "&lang=" + sfrom);
+         //   soundplay.setAttribute("src", "https://translate.google.com/translate_tts?ie=UTF-8&tl=en&client=tw-ob&q=" + randomwordSound);
+            soundplay.setAttribute("autoplay", "autoplay");
+            document.body.appendChild(soundplay);
+
+        }
+
+        // list형식으로 검색했던 단어를 보여주는 함수
+        function show_searched_word_list() {
+
+            means[m] = input_word + ': ' + means[m];
+
+            if (exist == true) {
+
+                soundbutton[m] = document.createElement("IMG");
+                soundbutton[m].setAttribute("src", "/images/sound.png");
+                soundbutton[m].setAttribute("width", "1");
+                soundbutton[m].setAttribute("height", "30");
+                soundbutton[m].setAttribute("alt", "soundbutton");
+                input_words[m] = input_word;
+                var temp = input_word;  // <<여기여기여기
+                soundbutton[m].addEventListener("click", function (event) {
+                    soundPlay(temp);
+                    soundplay.load();
+                }, false);
+
+
+
+                if (wordArray.indexOf(input_word) == -1) {
+                    wordArray.push(input_word);
+                    meaningArray.push(means[m]);
+                }
+                var node = new Array();
+                var textnode = new Array();
+
+                node[m] = document.createElement("LI");
+                textnode[m] = document.createTextNode(means[m]);
+                node[m].appendChild(soundbutton[m]);
+                node[m].appendChild(textnode[m]);
+                document.getElementById("search_List").appendChild(node[m]);
+            }
+        }
+
+        // list형식으로 입력한 단어에 해당하는 뜻을 보여주는 함수
+        function show_means_list(line, i) {
+            var k=0;
+              $('#mean_List').empty();
+            if (i == 0) {
+                exist = false;
+                alert('\''+  document.getElementById("input_word").value + '\''+'에 대한 검색결과가 존재하지 않습니다.');
+            }
+            else {
+                var node1 = new Array();
+                var textnode1 = new Array();
+                for (k = 0; k < i; k++) {
+                    node1[k] = document.createElement("LI");
+                    textnode1[k] = document.createTextNode(line[k]);
+                    node1[k].appendChild(textnode1[k]);
+                    document.getElementById("mean_List").appendChild(node1[k]);
+                }
+
+            }
+
+        }
+        // 홈 메뉴로 돌아가는 button
+        function Exit(){
+            var ALL = "";
+            ALL = ALL + wordArray[0];
+            ALL = ALL + " : ";
+            ALL = ALL + meaningArray[0];
+            for(var i = 1; i < wordArray.length ; i++)
+            {
+                ALL = ALL + "\t";
+                ALL = ALL + wordArray[i];
+                ALL = ALL + " : ";
+                ALL = ALL + meaningArray[i];
+            }
+            document.getElementById("upPath").value = "/public/file/" + document.cookie.valueOf() + sto + sfrom + ".txt";
+            document.getElementById("upData").value = ALL;
+        }
+
+    </script>
+    <form action="/upload" , method="post">
+        <input type="text" id="upPath" name="upPath" style="display: none;" />
+        <input type="text" id="upData" name="upData" style="display: none;" />
+        <input type="submit" id="exit" name="Upload" value="EXIT" onclick="Exit()" />
+    </form>
+</body>
+</html>

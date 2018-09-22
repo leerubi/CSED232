@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>PRACTICE MODE - PRACTICE</title>
+    <style>
+        #wrap {
+            width: 800px;
+            margin: 0 auto;
+        }
+        #siba {
+
+            position: fixed;
+            top: 100px;
+            left: 50px;
+            font-size: 35px;
+            color: white;
+            background-color: #3498db;
+            width: 120px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        #here {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 0px;
+        }
+        #left {
+            width: 400px; background: white;
+            /*font-size: 30px; color: black; font-weight: bold; text-align: center;*/
+            margin: 0 auto;
+            float: left;
+        }
+        #right {
+            width: 300px; background: white;
+            /*font-size: 30px; color: black; font-weight: bold; text-align: center;*/
+            margin: 0 auto;
+            float: right;
+        }
+        img {
+            width: 50px;
+        }
+        form {
+            font-size: 30px;
+        }
+/*        #btn {
+            height: 40px;
+            width: 100px;
+            color: white;
+            background-color: #3498db;
+            font-size: 1em;
+        }*/
+        #output {
+            /*position: relative;*/
+            width: 300px;
+            display: block;
+            background-color: #ededed;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border-radius:5px;
+            font-size: 30px;
+        }
+        #input {
+            width: 300px;
+            display: block;
+            background-color: #3498db;
+            color: white;
+            /*margin: 22.5px;*/
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border-radius:5px;
+        }
+        input[type=text]{
+            font-size: 30px;
+            text-align: center;
+        }
+        #result {
+            width: 300px;
+            display: block;
+            background-color: #7f7f7f;
+            color: white;
+            text-align: center;
+            /*margin: 15px;*/
+            padding-top: 35px;
+            padding-bottom: 35px;
+            border-radius:5px;
+        }
+        #sound {
+            float: left;
+            text-align:left;
+            margin-top: 20px;
+        }
+        #list{
+            font-size:20px;
+        }
+        #exit {
+            position: fixed;
+            bottom: 100px;
+            right: 100px;
+            font-size: 35px;
+            color: white;
+            background-color: #3498db;
+            width: 100px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+        <input type="text" id="read" style="Display: none;"/>
+        <script type="text/javascript" src="/javascripts/load_file.js"></script>
+        <script>
+          var from = window.location.href.split("?")[1].split("&")[0].split("=")[1];
+          var to = window.location.href.split("?")[1].split("&")[1].split("=")[1];
+          var filePath = "/file/" + document.cookie.valueOf() + from + to + ".txt";
+          document.getElementById("read").value = readTextFile(filePath);
+      
+        </script>
+    <div id="wrap">
+        <div id="here"></div>
+        <!-- <td><img src="sound.png" alt="sound" width="30"></td> -->
+        
+        <table id="left">
+
+            <tr>
+                 <span id="sound"><img src="/images/sound.png" usemap="#sound"><map id="soundbutton"></map></span>
+                <th id="output"></th>
+               
+            </tr>
+            <tr><td><input id="input" type="text"></td></tr>
+            <tr><td id="result"></td></tr>
+            <tr><td id="CPM"></td></tr>
+            <tr><td id="WPM"></td></tr>
+        </table>
+
+
+    
+
+
+
+<!--     <table id="wrap">
+
+        <div id="left">  
+        <tr><th id="sound"><img src="sound.png" usemap="#soundbutton"/>
+            <map id="soundbutton">
+            </map>
+        </th> 
+            <th id="output"></th></tr>
+        <tr><th><input id="input" type="text"></th></tr>
+        <tr><td id="result"></td></tr>
+        <tr><td id="CPM"></td></tr>
+        <tr><td id="WPM"></td></tr>
+          
+        </div> -->
+
+        <div id="right"> 
+            <p align="center"><b>연습한 단어 리스트</b></p>
+            <!--<input type = "button" id = "playbuttonID"> -->
+            <ul style=" list-style-type:none"> </ul> 
+            <list id="list"><br></list>
+        </div>
+
+    </div>
+
+    
+        
+
+<script type="text/javascript" src="/javascripts/practice.js"></script>
+<button id="exit" onclick="window.location='/mode/?from=' + from + '&to=' + to">EXIT</button>
+</body>
+</html>

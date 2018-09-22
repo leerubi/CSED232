@@ -1,0 +1,105 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'simple-tts' ]
+2 info using npm@3.10.10
+3 info using node@v6.10.2
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData simple-tts
+8 silly fetchNamedPackageData simple-tts
+9 silly mapToRegistry name simple-tts
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry data Result {
+12 silly mapToRegistry   raw: 'simple-tts',
+12 silly mapToRegistry   scope: null,
+12 silly mapToRegistry   escapedName: 'simple-tts',
+12 silly mapToRegistry   name: 'simple-tts',
+12 silly mapToRegistry   rawSpec: '',
+12 silly mapToRegistry   spec: 'latest',
+12 silly mapToRegistry   type: 'tag' }
+13 silly mapToRegistry uri https://registry.npmjs.org/simple-tts
+14 verbose request uri https://registry.npmjs.org/simple-tts
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 22:50:56
+17 verbose request id fa175166b56ea8a0
+18 http request GET https://registry.npmjs.org/simple-tts
+19 http 200 https://registry.npmjs.org/simple-tts
+20 verbose headers { 'content-type': 'application/json; charset=UTF-8',
+20 verbose headers   server: 'UploadServer',
+20 verbose headers   'cache-control': 'max-age=300',
+20 verbose headers   'last-modified': 'Tue, 4 Feb 2014 11:45:34 GMT',
+20 verbose headers   etag: '"52f0d2de-1bd5"',
+20 verbose headers   'content-length': '7125',
+20 verbose headers   'accept-ranges': 'bytes',
+20 verbose headers   date: 'Wed, 06 Dec 2017 13:50:57 GMT',
+20 verbose headers   via: '1.1 varnish',
+20 verbose headers   age: '0',
+20 verbose headers   connection: 'keep-alive',
+20 verbose headers   'x-served-by': 'cache-nrt6143-NRT',
+20 verbose headers   'x-cache': 'MISS',
+20 verbose headers   'x-cache-hits': '0',
+20 verbose headers   'x-timer': 'S1512568257.220119,VS0,VE513',
+20 verbose headers   vary: 'Accept-Encoding, Accept' }
+21 silly get cb [ 200,
+21 silly get   { 'content-type': 'application/json; charset=UTF-8',
+21 silly get     server: 'UploadServer',
+21 silly get     'cache-control': 'max-age=300',
+21 silly get     'last-modified': 'Tue, 4 Feb 2014 11:45:34 GMT',
+21 silly get     etag: '"52f0d2de-1bd5"',
+21 silly get     'content-length': '7125',
+21 silly get     'accept-ranges': 'bytes',
+21 silly get     date: 'Wed, 06 Dec 2017 13:50:57 GMT',
+21 silly get     via: '1.1 varnish',
+21 silly get     age: '0',
+21 silly get     connection: 'keep-alive',
+21 silly get     'x-served-by': 'cache-nrt6143-NRT',
+21 silly get     'x-cache': 'MISS',
+21 silly get     'x-cache-hits': '0',
+21 silly get     'x-timer': 'S1512568257.220119,VS0,VE513',
+21 silly get     vary: 'Accept-Encoding, Accept' } ]
+22 verbose get saving simple-tts to /Users/christopher/.npm/registry.npmjs.org/simple-tts/.cache.json
+23 verbose correctMkdir /Users/christopher/.npm correctMkdir not in flight; initializing
+24 silly install normalizeTree
+25 silly loadCurrentTree Finishing
+26 silly loadIdealTree Starting
+27 silly install loadIdealTree
+28 silly cloneCurrentTree Starting
+29 silly install cloneCurrentTreeToIdealTree
+30 silly cloneCurrentTree Finishing
+31 silly loadShrinkwrap Starting
+32 silly install loadShrinkwrap
+33 silly loadShrinkwrap Finishing
+34 silly loadAllDepsIntoIdealTree Starting
+35 silly install loadAllDepsIntoIdealTree
+36 silly rollbackFailedOptional Starting
+37 silly rollbackFailedOptional Finishing
+38 silly runTopLevelLifecycles Finishing
+39 silly install printInstalled
+40 verbose stack Error: Unsupported platform for simple-tts@0.1.3: wanted {"name":"simple-tts","version":"0.1.3","description":"simple TTS API via espeak","main":"lib/simple-tts.js","repository":{"type":"git","url":"git://github.com/JosePedroDias/simple-tts.git"},"keywords":["tts","espeak","text-to-speech"],"author":{"name":"José Pedro Dias","email":"jose.pedro.dias@gmail.com","url":"http://josepedrodias.com/"},"scripts":{"preinstall":"sudo apt-get install espeak lame vorbis-tools"},"os":["linux"],"engines":{"node":">= 0.8.x"},"dependencies":{},"license":"MIT","bugs":{"url":"https://github.com/JosePedroDias/simple-tts/issues"},"homepage":"https://github.com/JosePedroDias/simple-tts","_id":"simple-tts@0.1.3","dist":{"shasum":"c8b8a7bc0698595629ec2d4f35b58824f6eef341","tarball":"https://registry.npmjs.org/simple-tts/-/simple-tts-0.1.3.tgz"},"_from":"simple-tts","_npmVersion":"1.3.22","_npmUser":{"name":"josepedrodias","email":"jose.pedro.dias@gmail.com"},"maintainers":[{"name":"josepedrodias","email":"jose.pedro.dias@gmail.com"}],"directories":{},"_resolved":"https://registry.npmjs.org/simple-tts/-/simple-tts-0.1.3.tgz","_shasum":"c8b8a7bc0698595629ec2d4f35b58824f6eef341","_requested":{"raw":"simple-tts","scope":null,"escapedName":"simple-tts","name":"simple-tts","rawSpec":"","spec":"latest","type":"tag"},"_spec":"simple-tts","_where":"/Users/christopher/OneDrive - postech.ac.kr/CLASS3-2/Object-Oriented Programming/Project/OOP11lization","_args":[[{"raw":"simple-tts","scope":null,"escapedName":"simple-tts","name":"simple-tts","rawSpec":"","spec":"latest","type":"tag"},"/Users/christopher/OneDrive - postech.ac.kr/CLASS3-2/Object-Oriented Programming/Project/OOP11lization"]],"readme":"ERROR: No README data found!"} (current: {"os":"darwin","cpu":"x64"})
+40 verbose stack     at checkPlatform (/usr/local/lib/node_modules/npm/node_modules/npm-install-checks/index.js:45:14)
+40 verbose stack     at thenWarnEngineIssues (/usr/local/lib/node_modules/npm/lib/install/validate-args.js:41:5)
+40 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/iferr/index.js:13:50
+40 verbose stack     at checkEngine (/usr/local/lib/node_modules/npm/node_modules/npm-install-checks/index.js:24:10)
+40 verbose stack     at module.exports.isInstallable (/usr/local/lib/node_modules/npm/lib/install/validate-args.js:38:3)
+40 verbose stack     at Array.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/slide/lib/bind-actor.js:15:8)
+40 verbose stack     at LOOP (/usr/local/lib/node_modules/npm/node_modules/slide/lib/chain.js:15:14)
+40 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/slide/lib/chain.js:18:7
+40 verbose stack     at checkSelf (/usr/local/lib/node_modules/npm/lib/install/validate-args.js:46:72)
+40 verbose stack     at Array.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/slide/lib/bind-actor.js:15:8)
+41 verbose pkgid simple-tts@0.1.3
+42 verbose cwd /Users/christopher/OneDrive - postech.ac.kr/CLASS3-2/Object-Oriented Programming/Project/OOP11lization
+43 error Darwin 17.2.0
+44 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "simple-tts"
+45 error node v6.10.2
+46 error npm  v3.10.10
+47 error code EBADPLATFORM
+48 error notsup Unsupported platform for simple-tts@0.1.3: wanted {"os":"linux","arch":"any"} (current: {"os":"darwin","arch":"x64"})
+49 error notsup Valid OS:    linux
+49 error notsup Valid Arch:  any
+49 error notsup Actual OS:   darwin
+49 error notsup Actual Arch: x64
+50 verbose exit [ 1, true ]

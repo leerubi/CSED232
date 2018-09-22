@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+   <meta charset="utf-8" />
+   <title>PRACTICE MODE - TEST</title>
+   <style>
+        #siba {
+            position: fixed;
+            top: 100px;
+            left: 50px;
+            font-size: 35px;
+            color: white;
+            background-color: #3498db;
+            width: 120px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        #exit {
+            position: fixed;
+            bottom: 100px;
+            right: 100px;
+            font-size: 35px;
+            color: white;
+            background-color: #3498db;
+            width: 100px;
+            text-align: center;
+            border-radius: 5px;
+        }
+      #wrap {
+            width: 800px;
+            margin: 0 auto;
+        }
+        #left {
+            width: 400px; background: white;
+            /*font-size: 30px; color: black; font-weight: bold; text-align: center;*/
+            margin: 0 auto;
+            float: left;
+        }
+        #right {
+            width: 300px; background: white;
+            /*font-size: 30px; color: black; font-weight: bold; text-align: center;*/
+            margin: 0 auto;
+            float: right;
+        }
+        img {
+            width: 50px;
+        }
+        form {
+            font-size: 30px;
+        }
+        #output {
+            /*position: relative;*/
+            width: 300px;
+            display: block;
+            background-color: #ededed;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border-radius:5px;
+            font-size: 23px;
+        }
+        #input {
+            width: 300px;
+            display: block;
+            background-color: #3498db;
+            color: white;
+            /*margin: 22.5px;*/
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border-radius:5px;
+        }
+        input[type=text]{
+            font-size: 30px;
+            text-align: center;
+        }
+        #result {
+            width: 300px;
+            display: block;
+            background-color: #7f7f7f;
+            color: white;
+            text-align: center;
+            /*margin: 15px;*/
+            padding-top: 35px;
+            padding-bottom: 35px;
+            border-radius:5px;
+        }
+        #sound {
+            float: left;
+            text-align:left;
+            margin-top: 20px;
+        }
+        #list{
+            font-size:20px;
+        }
+        #here {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 0px;
+        }
+   </style>
+</head>
+<body>
+        <input type="text" id="read" style="Display: none;"/>
+        <script type="text/javascript" src="/javascripts/load_file.js"></script>
+        <script>
+          var from = window.location.href.split("?")[1].split("&")[0].split("=")[1];
+          var to = window.location.href.split("?")[1].split("&")[1].split("=")[1];
+          var filePath = "/file/" + document.cookie.valueOf() + from + to + ".txt";
+          document.getElementById("read").value = readTextFile(filePath);
+      
+        </script>
+   <div id ="wrap">
+        <div id="here"></div>
+      <table id="left">
+         <tr>
+                <th id="output"></th>
+               
+            </tr>
+            <tr><td><input id="input" type="text"></td></tr>
+            <tr><td id="result"></td></tr>
+            <tr><td id="CPM"></td></tr>
+            <tr><td id="WPM"></td></tr>
+        </table>
+    <div id="right">
+      <p align="center"><b>연습한 단어 리스트</b></p>
+           <!--<input type = "button" id = "playbuttonID"> -->
+        <ul style=" list-style-type:none"></ul>
+        <list id="list"><br></list>
+    </div>
+
+</div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   
+   <script type="text/javascript" src="/javascripts/test.js">
+   </script>
+<button id="exit" onclick="window.location='/mode/?from=' + from + '&to=' + to">EXIT</button>
+</body>
+</html>

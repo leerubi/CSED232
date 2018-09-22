@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>JOIN</title>
+    <style>
+        div {
+            width: 600px; background: white;
+            font-size: 30px; color: black; font-weight: bold; text-align: center;
+            margin: 0 auto;
+        }
+        img {
+            width: 100px;
+        }
+        form {
+            font-size: 20px;
+        }
+        #btn {
+            height: 40px;
+            width: 100px;
+            color: white;
+            background-color: #3498db;
+            font-size: 1em;
+        }
+        table, td{
+            margin:0 auto;
+            border: none;
+            border-collapse: collapse;
+        }
+        input{
+            font-size:22px;
+        }
+
+    </style>
+</head>
+<script language='javascript'>
+ function formChk(){
+    if(document.joinForm1.uid.value==''){
+      alert("id를 입력하세요!!");
+    }else if(document.joinForm1.upw.value==''){
+      alert("password를 입력하세요!!");
+    }else if(document.joinForm1.c_upw.value != document.joinForm1.upw.value){
+       alert("비밀번호가 일치하지 않습니다!");
+    }
+    else
+      document.joinForm1.submit(); 
+    }
+  </script>
+<body>
+    <div>
+        <p>회원가입하여 자신만의 단어장을 만들어보세요!</p>
+        <!-- <p><img src="login.png" /></p> -->
+        <form name="joinForm1" action="/register" method="post">
+            <table align="center">
+                <tr>
+                    <td><img src = "/images/id.png" style = "width:36px;height:36px;"></td>
+                    <td><input type="text" name="uid" placeholder="Username" /></td>
+                </tr>
+                <tr>
+                    <td> <img src = "/images/password.png" style = "width:36px;height:36px;"></td>
+                    <td><input type="password" name="upw" placeholder="Password" /></td>
+                </tr>
+                <tr>
+                    <td> <img src = "/images/password.png" style = "width:36px;height:36px;"></td>
+                    <td><input type="password" name="c_upw" placeholder="Certify password" /></td>
+                </tr>
+            </table>
+        
+        </br>
+            <input type="button" id="btn" value="JOIN" onclick="formChk()"></input>
+
+            <!-- <input type="reset"> -->
+        </form>    
+    </div>
+</body>

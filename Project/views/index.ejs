@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>LOGIN</title>
+    <style>
+        div {
+            width: 600px; background: white;
+            font-size: 30px; color: black; font-weight: bold; text-align: center;
+            margin: 0 auto;
+        }
+        img {
+            width: 100px;
+        }
+        form {
+            font-size: 20px;
+        }
+        #btn {
+            height: 40px;
+            width: 100px;
+            color: white;
+            background-color: #3498db;
+            font-size: 1em;
+        }
+        table, td{
+            margin:0 auto;
+            border: none;
+            border-collapse: collapse;
+        }
+        input{
+            font-size:22px;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <p>Language Trainer</p>
+        <p><img src="/images/login.png" /></p>
+        <form action="/validate" method="post">
+            <table align="center">
+                <tr>
+                    <td><img src = "/images/id.png" style = "width:36px;height:36px;"></td>
+                    <td><input type="text" id="uid" name="uid" placeholder="Username" onkeyup="reset_cookie()" /></td>
+                </tr>
+                <tr>
+                    <td> <img src = "/images/password.png" style = "width:36px;height:36px;"></td>
+                    <td><input type="password" name="upw" placeholder="Password" /></td>
+                </tr>
+            </table>
+        
+        </br>
+            <input id="btn" value="LOGIN" type="submit"></input>
+            <!-- <input type="reset"> -->
+        </form>
+        <input id="tn" value="JOIN" type="button" onclick="window.location='/join';"></input>    
+    </div>
+    <script>
+        function reset_cookie() {
+            document.cookie = 'uid=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie= 'uid='+document.getElementById("uid").value;
+        }
+    </script> 
+</body>
+</html>

@@ -1,0 +1,92 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>MODE SELECT</title>
+
+    <style>
+        body {
+            color:#3e3e3e;
+        }
+
+        #content {
+            width:810px;
+            margin:0 auto;
+            overflow:hidden;
+        }
+
+        #mode {
+            width:350px;
+            background-color:#ffffff;
+            margin:0 auto;
+            border-radius:10px;
+        }
+
+        #title {
+            padding:20px;
+            font-size:1.5em;
+            border-radius:5px;
+            text-align: center;
+            color: white;
+            background-color: #2ecc71
+        }
+        table, th, td{
+            margin: :0 auto;
+            border: none;
+            border-collapse: collapse;
+        }
+        td{
+            text-align: center;
+            font-size: 36px;
+        }
+        img {
+            width:200px;
+            height:200px;
+        }
+        strong {
+            font-size: 0.8em;
+        }
+
+
+
+    </style>
+
+
+</head>
+<body>
+    <script>
+      var from = window.location.href.split("?")[1].split("&")[0].split("=")[1];
+      var to = window.location.href.split("?")[1].split("&")[1].split("=")[1];
+      var search_path = "/search/?from=" + from + "&to=" + to;
+      var trans_path = "/translate/?from=" + from + "&to=" + to;
+      var prac_path = "/practice/?from=" + from + "&to=" + to;
+      var test_path = "/test/?from=" + from + "&to=" + to;
+      function goto(path)
+      {
+        window.location = path;
+      }
+    </script>
+    <div id="content">
+        <div id="mode">
+            <p id="title">학습모드를 선택하세요!</p>
+        </div>
+    </div>
+     <table style = "width:60%" align="center">
+        <tr>
+            <th><img src="/images/search.png" onclick="goto(search_path);"/></th>
+            <th><img src="/images/translate.png" onclick="goto(trans_path);"/></th>            
+        </tr>
+        <tr>
+            <td><strong>단어 검색</strong></td>
+            <td><strong> 번 역  </strong></td>
+        </tr>
+                <tr>
+            <th><img src="/images/practice.png" onclick="goto(prac_path);"/></th>
+            <th><img src="/images/test.png" onclick="goto(test_path);"/></th>            
+        </tr>
+        <tr>
+            <td><strong>연습 모드</strong></td>
+            <td><strong>테스트 모드</strong></td>
+        </tr>
+    </table>
+</body>
+</html>

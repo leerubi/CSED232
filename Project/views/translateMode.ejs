@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>TRANSLATE MODE</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+      #wrap {
+        margin: 0 auto;
+        width: 800px;
+      }
+      #exit {
+            position: fixed;
+            bottom: 100px;
+            right: 100px;
+            font-size: 35px;
+            color: white;
+            background-color: #3498db;
+            width: 100px;
+            text-align: center;
+            border-radius: 5px;
+        }
+      #lang {
+        width: 294px;
+        padding-top:10px;
+        padding-bottom:10px;
+        border-radius:5px;
+        text-align: center;
+        color: white;
+        background-color: #2ecc71;
+      }
+      #result {
+            width: 294px;
+        height: 464px;
+        border: solid 2px;
+      }
+      #btn{
+        text-align: center;
+      }
+      textarea {
+        border: solid 2px;
+      }
+      textarea[type=text] {
+        font-size: 20px;
+      }
+    </style>
+</head>
+<body>
+  <script>
+  var from = window.location.href.split("?")[1].split("&")[0].split("=")[1];
+  var to = window.location.href.split("?")[1].split("&")[1].split("=")[1];
+  </script>
+      <button id="exit" onclick="window.location='/mode/?from=' + from + '&to=' + to">EXIT</button>
+
+  <table id="wrap">
+      <tr>
+        <td id="lang">한국어</td>
+        <td><img id="from" src="/images/sound.png" alt="sound" width="30"></td>
+        <td></td>
+        <td id="lang">엉어</td>
+        <td><img id="to" src="/images/sound.png" alt="sound" width="30"></td>
+      </tr>
+      <tr>
+        <td><textarea rows="20" cols="30" type = "text" id = "word" onkeypress = "try{trans(event)}catch(err){alert(err)}"></textarea>
+        <td colspan="2" id="btn"><img src="/images/direction.png" alt="direction" width="50"></td>
+
+            <td><p id="result"><%= title %></p></td>
+
+      </tr>
+    </table>
+
+<script>
+  if(window.location.href.split("?")[1].split("&")[2] != null && window.location.href.split("?")[1].split("&")[2] != "") {
+    var len = window.location.href.split("?")[1].split("&")[2].split("=")[1].split("+");
+    var l='';
+    for (var i = 0 ; i<len.length; i++) {
+      if(i==0) {l = len[i];}
+      else {l = l + ' '  + len[i];}
+    }
+    l = decodeURI(l);
+    document.getElementById("word").value = l;
+  }
+var userIn; //사용자가 입력하는 영어 값
+var sound; //발음
+var resultWord;// 번역된 결과 값 
+
+
+
+  function trans(e) {
+    if(e.keyCode === 13) {
+    userIn = document.getElementById("word").value;
+    // document.write(userIn);
+    // console.log(document.getElementById("word"));
+    var parseUser = userIn.split(" ");
+    var plusUser = "";
+    for(var i=0; i<parseUser.length; i++) {
+      if(i==0) plusUser = parseUser[i];
+      else plusUser = plusUser + "+" + parseUser[i];
+    }
+    window.location = "/translate/?from=" + from + "&to=" + to + "&content=" + plusUser;
+      resultWord = document.getElementById("result");
+      console.log(plusUser);
+      // document.write(userIn);
+    }
+  }
+
+
+  var en_sound_button = document.getElementById("to");
+  en_sound_button.addEventListener("click",function(event) {
+    var l = document.getElementById("word");
+    en_soundPlay(l);
+    sound.load();
+  }, false);  
+
+  var ko_sound_button = document.getElementById("from");
+  ko_sound_button.addEventListener("click",function(event)
+  {
+    ko_soundPlay(resultWord);
+    sound.load();
+  }, false);
+
+  function en_soundPlay(en_word)
+  {
+    console.log(en_word);
+    sound = document.createElement("VIDEO");
+    sound.setAttribute("width","0");
+    sound.setAttribute("height","0");
+    sound.setAttribute("src","/sound/?content=" + en_word + "&lang=" + to);
+    sound.setAttribute("autoplay","autoplay");
+    document.body.appendChild(sound);
+
+  }
+   function ko_soundPlay(ko_word)
+  {
+    sound = document.createElement("VIDEO");
+    sound.setAttribute("width","0");
+    sound.setAttribute("height","0");
+    sound.setAttribute("src","/sound/?content=" + ko_word + "&lang=" + from);
+    sound.setAttribute("autoplay","autoplay");
+    document.body.appendChild(sound);
+
+  }
+
+</script>
+
+</body>
+</html>

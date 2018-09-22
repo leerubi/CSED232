@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>LANGUAGE SELECT</title>
+
+    <style>
+        body {
+            color:#3e3e3e;
+        }
+
+        #content {
+            width:810px;
+            margin:0 auto;
+            overflow:hidden;
+        }
+
+        #mylang {
+            width:350px;
+            float:left;
+            background-color:#ffffff;
+            margin:10px;
+            border-radius:10px;
+        }
+
+        #studylang {
+            width:350px;
+            float:right;
+            background-color:#ffffff;
+            margin:10px;
+            border-radius:10px;
+        }
+
+        #title {
+            padding:20px;
+            font-size:1.5em;
+            border-radius:5px;
+            text-align: center;
+            color: white;
+            background-color: #2ecc71
+        }
+
+        select {
+            height: 40px;
+            width: 150px;
+            font-size:1.3em;
+        }
+
+        #btn {
+            height: 40px;
+            width: 100px;
+            color: white;
+            background-color: #3498db;
+            font-size: 1.3em;
+            /*position: fixed;*/
+        }
+
+    </style>
+
+
+</head>
+<body>
+    <script>
+      function goto()
+      {
+	var lang_from = document.getElementById("lang_from").value;
+	var lang_to = document.getElementById("lang_to").value;
+        window.location = "/set_lang/?from=" + lang_from + "&to=" + lang_to;
+      }
+    </script>
+    <div id="content">
+        <div id="mylang">
+            <p id="title">사용할 언어를 선택하세요!</p>
+            <form action="#">
+                <select name="lang_from" id="lang_from">
+                     <option value="ko">언어 선택</option>
+                     <option value="ko">한국어</option>
+                     <option value="en">English</option>
+                     <option value="ex">Español</option>   
+                </select>
+           </form>
+        </div>
+        <div id="studylang">
+            <p id="title">공부할 언어를 선택하세요!</p>
+            <form action="#">
+                <select name="lang_to" id="lang_to">
+                     <option value="en">언어 선택</option>
+                     <option value="ko">한국어</option>
+                     <option value="en">English</option>
+                     <option value="es">Español</option>   
+                </select>
+           </form>
+        </div>
+        <p align = "right"><input id="btn" value="NEXT" type="submit" onclick="goto()"></input></p>
+    </div>
+</body>
+</html>
