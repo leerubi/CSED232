@@ -1,6 +1,9 @@
 # CSED232
 2017-2 Object-Oriented Programming
 
+## Project
+Personal language trainer in javascript, HTML, CSS.
+
 ## ASSN1
 Pizza ordering system in C++ without using STL.
 
@@ -11,6 +14,3 @@ Torpedo game in C++ using inheritance.
 Agario game in C++ using inhertance, polymorphism, and operator overloading.
 
 GUI programming in QT.
-
-## Project
-Personal language trainer in javascript, HTML, CSS.
